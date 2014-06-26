@@ -1,42 +1,32 @@
-create table address(
-	ID INT(10) not null auto_increment primary key,
-	CITY varchar(255) not null,
-	COUNTRY varchar(255) not null,
-	STREET varchar(255) not null,
-	ZIPCODE varchar(255) not null
-);
+use sql_exercise;
 
-create table restaurant(
-	ID INT(10) not null auto_increment primary key,
-	NAME varchar(255) not null,
-	ADDRESS_ID INT(10) not null,
-	FOREIGN KEY (ADDRESS_ID) 
-		references address(ID)
-);
+INSERT INTO address VALUES (Null,'Budapest','Hungary','Alsó valami','1070');
 
-create table menu(
-	ID INT(10) not null auto_increment primary key,
-	Restaurant_ID INT(10) not null,
-	FROMDATE DATE,
-	TODATE DATE,
-	FOREIGN KEY (Restaurant_ID)
-		references restaurant(ID)
-);
+INSERT INTO restaurant VALUES(NULL, 'All You can Eat', 1);
 
-create table food(
-	ID int(10) not null auto_increment primary key,
-	CALORIES int(10),
-	ISVEGAN bit(1) not null,
-	NAME varchar(255) not null,
-	PRICE int(10) not null
-);
+INSERT INTO menu VALUES(null, 1, curdate(), curdate()+ interval 1 month - interval 1 day);
 
-create table menu_food(
-	Menu_ID int(10) not null,
-	foods_ID INT(10) not null,
-	primary key (Menu_ID,foods_ID),
-	FOREIGN KEY (Menu_ID)
-		references menu(ID),
-	Foreign key (foods_ID)
-		references food(ID)
-);
+insert INTO food VALUES(null, 10, 0, 'husi', 1000);
+insert INTO food VALUES(null, 20, 1, 'krumpli', 200);
+insert INTO food VALUES(null, 0, 1, 'salata', 300);
+insert INTO food VALUES(null, 30, 1, 'bounty', 100);
+insert INTO food VALUES(null, 40, 0, 'diszno', 2000);
+
+insert INTO menu_food VALUES(1,1);
+insert INTO menu_food VALUES(1,2);
+insert INTO menu_food VALUES(1,3);
+insert INTO menu_food VALUES(1,4);
+insert INTO menu_food VALUES(1,5);
+
+INSERT INTO menu VALUES(null, 1, curdate()+interval 1 month, curdate()+ interval 2 month - interval 1 day);
+
+insert INTO food VALUES(null, 70, 1, 'draga bounty', 1100);
+insert INTO food VALUES(null, 80, 0, 'draga diszno', 20000);
+
+insert INTO menu_food VALUES(2,1);
+insert INTO menu_food VALUES(2,2);
+insert INTO menu_food VALUES(2,3);
+insert INTO menu_food VALUES(2,4);
+insert INTO menu_food VALUES(2,5);
+insert INTO menu_food VALUES(2,6);
+insert INTO menu_food VALUES(2,7);
